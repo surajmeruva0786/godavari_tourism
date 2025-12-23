@@ -216,7 +216,7 @@ const initialPackages: PackageData[] = [
     type: 'accommodation',
     persons: 2,
     price: '₹8,999',
-    image: 'https://images.unsplash.com/photo-1672401231510-1365539ffc81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHJlc29ydCUyMEluZGlhfGVufDF8fHx8MTc2NjQwOTk0N3ww&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/godavari-bridge.jpg',
     title: {
       english: "Couple's Getaway",
       telugu: 'జంట విహారం',
@@ -264,7 +264,7 @@ const initialPackages: PackageData[] = [
     type: 'accommodation',
     persons: 3,
     price: '₹17,999',
-    image: 'https://images.unsplash.com/photo-1672401231510-1365539ffc81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHJlc29ydCUyMEluZGlhfGVufDF8fHx8MTc2NjQwOTk0N3ww&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/godavari-boat.jpg',
     title: {
       english: 'Family Suite',
       telugu: 'కుటుంబ సూట్',
