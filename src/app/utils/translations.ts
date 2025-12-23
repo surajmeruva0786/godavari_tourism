@@ -8,20 +8,20 @@ export interface Translations {
   sightseeing: string;
   accommodation: string;
   contact: string;
-  
+
   // Hero
   heroTitle: string;
   heroSubtitle: string;
   bookNow: string;
-  
+
   // Sightseeing
   sightseeingTitle: string;
   sightseeingSubtitle: string;
-  
+
   // Accommodation
   accommodationTitle: string;
   accommodationSubtitle: string;
-  
+
   // Package Details
   person: string;
   persons: string;
@@ -29,17 +29,18 @@ export interface Translations {
   inclusions: string;
   price: string;
   perPerson: string;
-  
+
   // Contact
   contactTitle: string;
   contactSubtitle: string;
   callUs: string;
   emailUs: string;
   visitUs: string;
-  
+  helplineText: string;
+
   // Footer
   footerText: string;
-  
+
   // Package descriptions
   sightseeing1Person: {
     title: string;
@@ -59,7 +60,7 @@ export interface Translations {
     duration: string;
     inclusions: string[];
   };
-  
+
   accommodation1Person: {
     title: string;
     description: string;
@@ -86,32 +87,33 @@ export const translations: Record<Language, Translations> = {
     sightseeing: 'Sightseeing',
     accommodation: 'Accommodation',
     contact: 'Contact',
-    
+
     heroTitle: 'Discover the Divine Godavari',
     heroSubtitle: 'Experience the sacred beauty of Godavari river with our curated sightseeing and stay packages',
     bookNow: 'Book Now',
-    
+
     sightseeingTitle: 'Godavari Sightseeing Packages',
     sightseeingSubtitle: 'Explore the spiritual and scenic wonders of Godavari',
-    
+
     accommodationTitle: 'Accommodation Packages',
     accommodationSubtitle: 'Comfortable stays with authentic local hospitality',
-    
+
     person: 'Person',
     persons: 'Persons',
     duration: 'Duration',
     inclusions: 'Inclusions',
     price: 'Price',
     perPerson: 'per person',
-    
+
     contactTitle: 'Get in Touch',
     contactSubtitle: 'Contact us for bookings and inquiries',
     callUs: 'Call Us',
     emailUs: 'Email Us',
     visitUs: 'Visit Us',
-    
+    helplineText: '24/7 Booking & Support Helpline:',
+
     footerText: '© 2024 Godavari Tourism. All rights reserved.',
-    
+
     sightseeing1Person: {
       title: 'Solo Explorer Package',
       description: 'Perfect for solo travelers seeking spiritual and cultural experiences along the Godavari',
@@ -150,7 +152,7 @@ export const translations: Record<Language, Translations> = {
         'Visit to local tribal villages'
       ]
     },
-    
+
     accommodation1Person: {
       title: 'Single Retreat',
       description: 'Comfortable single occupancy room with modern amenities and river views',
@@ -191,38 +193,39 @@ export const translations: Record<Language, Translations> = {
       ]
     }
   },
-  
+
   telugu: {
     home: 'హోమ్',
     sightseeing: 'సందర్శనీయ స్థలాలు',
     accommodation: 'వసతి',
     contact: 'సంప్రదించండి',
-    
+
     heroTitle: 'దివ్యమైన గోదావరిని కనుగొనండి',
     heroSubtitle: 'మా ప్రత్యేక సందర్శన మరియు బస వసతి ప్యాకేజీలతో గోదావరి నది యొక్క పవిత్ర అందాన్ని అనుభవించండి',
     bookNow: 'ఇప్పుడే బుక్ చేయండి',
-    
+
     sightseeingTitle: 'గోదావరి సందర్శనీయ ప్యాకేజీలు',
     sightseeingSubtitle: 'గోదావరి యొక్క ఆధ్యాత్మిక మరియు సుందర అద్భుతాలను అన్వేషించండి',
-    
+
     accommodationTitle: 'వసతి ప్యాకేజీలు',
     accommodationSubtitle: 'నిజమైన స్థానిక ఆతిథ్యంతో సౌకర్యవంతమైన వసతి',
-    
+
     person: 'వ్యక్తి',
     persons: 'వ్యక్తులు',
     duration: 'వ్యవధి',
     inclusions: 'చేర్చబడినవి',
     price: 'ధర',
     perPerson: 'ప్రతి వ్యక్తికి',
-    
+
     contactTitle: 'సంప్రదించండి',
     contactSubtitle: 'బుకింగ్‌లు మరియు విచారణల కోసం మమ్మల్ని సంప్రదించండి',
     callUs: 'మాకు కాల్ చేయండి',
     emailUs: 'మాకు ఇమెయిల్ చేయండి',
     visitUs: 'మాకు సందర్శించండి',
-    
+    helplineText: '24/7 బుకింగ్ & సపోర్ట్ హెల్ప్‌లైన్:',
+
     footerText: '© 2024 గోదావరి టూరిజం. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.',
-    
+
     sightseeing1Person: {
       title: 'సోలో ఎక్స్‌ప్లోరర్ ప్యాకేజీ',
       description: 'గోదావరి వెంట ఆధ్యాత్మిక మరియు సాంస్కృతిక అనుభవాలను కోరుకునే ఒంటరి ప్రయాణికులకు అనువైనది',
@@ -261,7 +264,7 @@ export const translations: Record<Language, Translations> = {
         'స్థానిక గిరిజన గ్రామాల సందర్శన'
       ]
     },
-    
+
     accommodation1Person: {
       title: 'సింగిల్ రిట్రీట్',
       description: 'ఆధునిక సౌకర్యాలు మరియు నదీ దృశ్యాలతో సౌకర్యవంతమైన సింగిల్ రూమ్',
@@ -302,38 +305,39 @@ export const translations: Record<Language, Translations> = {
       ]
     }
   },
-  
+
   hindi: {
     home: 'होम',
     sightseeing: 'दर्शनीय स्थल',
     accommodation: 'आवास',
     contact: 'संपर्क करें',
-    
+
     heroTitle: 'दिव्य गोदावरी की खोज करें',
     heroSubtitle: 'हमारे विशेष दर्शन और ठहरने के पैकेज के साथ गोदावरी नदी की पवित्र सुंदरता का अनुभव करें',
     bookNow: 'अभी बुक करें',
-    
+
     sightseeingTitle: 'गोदावरी दर्शनीय पैकेज',
     sightseeingSubtitle: 'गोदावरी के आध्यात्मिक और प्राकृतिक चमत्कारों का अन्वेषण करें',
-    
+
     accommodationTitle: 'आवास पैकेज',
     accommodationSubtitle: 'प्रामाणिक स्थानीय आतिथ्य के साथ आरामदायक ठहरना',
-    
+
     person: 'व्यक्ति',
     persons: 'व्यक्ति',
     duration: 'अवधि',
     inclusions: 'शामिल सुविधाएं',
     price: 'कीमत',
     perPerson: 'प्रति व्यक्ति',
-    
+
     contactTitle: 'संपर्क करें',
     contactSubtitle: 'बुकिंग और पूछताछ के लिए हमसे संपर्क करें',
     callUs: 'हमें कॉल करें',
     emailUs: 'हमें ईमेल करें',
     visitUs: 'हमसे मिलें',
-    
+    helplineText: '24/7 बुकिंग और सहायता हेल्पलाइन:',
+
     footerText: '© 2024 गोदावरी टूरिज्म। सर्वाधिकार सुरक्षित।',
-    
+
     sightseeing1Person: {
       title: 'सोलो एक्सप्लोरर पैकेज',
       description: 'गोदावरी के किनारे आध्यात्मिक और सांस्कृतिक अनुभवों की तलाश करने वाले एकल यात्रियों के लिए बिल्कुल सही',
@@ -372,7 +376,7 @@ export const translations: Record<Language, Translations> = {
         'स्थानीय आदिवासी गांवों का दौरा'
       ]
     },
-    
+
     accommodation1Person: {
       title: 'सिंगल रिट्रीट',
       description: 'आधुनिक सुविधाओं और नदी के दृश्य के साथ आरामदायक सिंगल कमरा',
@@ -421,7 +425,7 @@ export const LanguageContext = createContext<{
   t: Translations;
 }>({
   language: 'english',
-  setLanguage: () => {},
+  setLanguage: () => { },
   t: translations.english
 });
 

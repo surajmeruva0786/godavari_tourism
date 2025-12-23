@@ -46,7 +46,7 @@ export function Hero() {
           {/* Right Side - Contact Details */}
           <div className="space-y-4">
             <div className="bg-white/95 backdrop-blur rounded-xl shadow-xl p-6">
-              <h3 className="text-xl text-gray-900 mb-4">Get in Touch</h3>
+              <h3 className="text-xl text-gray-900 mb-4">{t.contactTitle}</h3>
 
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
@@ -54,7 +54,7 @@ export function Hero() {
                     <Phone className="h-5 w-5 text-emerald-600" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Call Us</p>
+                    <p className="text-sm text-gray-600 mb-1">{t.callUs}</p>
                     <a
                       href={`tel:${settings.contactPhone1.replace(/\s/g, '')}`}
                       className="text-emerald-600 hover:text-emerald-700 transition-colors block"
@@ -75,7 +75,7 @@ export function Hero() {
                     <Mail className="h-5 w-5 text-emerald-600" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Email Us</p>
+                    <p className="text-sm text-gray-600 mb-1">{t.emailUs}</p>
                     <a
                       href={`mailto:${settings.contactEmail}`}
                       className="text-emerald-600 hover:text-emerald-700 transition-colors break-words"
@@ -90,7 +90,7 @@ export function Hero() {
                     <MapPin className="h-5 w-5 text-emerald-600" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Visit Us</p>
+                    <p className="text-sm text-gray-600 mb-1">{t.visitUs}</p>
                     <p className="text-gray-700 text-sm">
                       {settings.contactAddress}
                     </p>

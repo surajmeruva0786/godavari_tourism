@@ -70,7 +70,7 @@ export function Contact() {
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white rounded-xl shadow-lg px-8 py-6">
             <Phone className="h-6 w-6 text-emerald-600" />
             <div className="text-center sm:text-left">
-              <p className="text-gray-600 mb-1">24/7 Booking & Support Helpline:</p>
+              <p className="text-gray-600 mb-1">{t.helplineText}</p>
               <a
                 href={`tel:${settings.contactPhone1.replace(/\s/g, '')}`}
                 className="text-2xl md:text-3xl text-emerald-600 hover:text-emerald-700 transition-colors"
