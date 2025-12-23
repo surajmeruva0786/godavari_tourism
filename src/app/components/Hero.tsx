@@ -6,11 +6,15 @@ export function Hero() {
   const { t } = useTranslation();
   const { settings } = useApp();
 
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const openBookingModal = () => {
+    const event = new CustomEvent('openBookingModal', {
+      detail: {
+        type: 'sightseeing',
+        persons: 1,
+        title: 'General Inquiry'
+      }
+    });
+    window.dispatchEvent(event);
   };
 
   return (
@@ -32,7 +36,7 @@ export function Hero() {
               {t.heroSubtitle}
             </p>
             <button
-              onClick={scrollToContact}
+              onClick={openBookingModal}
               className="bg-emerald-600 text-white px-8 py-3 rounded-lg hover:bg-emerald-700 transition-colors"
             >
               {t.bookNow}
@@ -43,7 +47,7 @@ export function Hero() {
           <div className="space-y-4">
             <div className="bg-white/95 backdrop-blur rounded-xl shadow-xl p-6">
               <h3 className="text-xl text-gray-900 mb-4">Get in Touch</h3>
-              
+
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
