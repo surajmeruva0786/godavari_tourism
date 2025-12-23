@@ -31,12 +31,14 @@ export function Contact() {
             >
               {settings.contactPhone1}
             </a>
-            <a
-              href={`tel:${settings.contactPhone2.replace(/\s/g, '')}`}
-              className="text-xl text-emerald-600 hover:text-emerald-700 transition-colors block"
-            >
-              {settings.contactPhone2}
-            </a>
+            {settings.contactPhone2 && (
+              <a
+                href={`tel:${settings.contactPhone2.replace(/\s/g, '')}`}
+                className="text-xl text-emerald-600 hover:text-emerald-700 transition-colors block"
+              >
+                {settings.contactPhone2}
+              </a>
+            )}
           </div>
 
           {/* Email */}

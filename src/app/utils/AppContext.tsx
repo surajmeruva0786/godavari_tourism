@@ -18,8 +18,8 @@ interface AppContextType {
 }
 
 const defaultSettings: WebsiteSettings = {
-  contactPhone1: '+91 98765 43210',
-  contactPhone2: '+91 91234 56789',
+  contactPhone1: '+91 99485 82171',
+  contactPhone2: '',
   contactEmail: 'info@godavaritourism.com',
   contactAddress: 'Bhadrachalam Road, East Godavari District, Andhra Pradesh - 533101'
 };

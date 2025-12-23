@@ -61,12 +61,14 @@ export function Hero() {
                     >
                       {settings.contactPhone1}
                     </a>
-                    <a
-                      href={`tel:${settings.contactPhone2.replace(/\s/g, '')}`}
-                      className="text-emerald-600 hover:text-emerald-700 transition-colors block text-sm"
-                    >
-                      {settings.contactPhone2}
-                    </a>
+                    {settings.contactPhone2 && (
+                      <a
+                        href={`tel:${settings.contactPhone2.replace(/\s/g, '')}`}
+                        className="text-emerald-600 hover:text-emerald-700 transition-colors block text-sm"
+                      >
+                        {settings.contactPhone2}
+                      </a>
+                    )}
                   </div>
                 </div>
 
