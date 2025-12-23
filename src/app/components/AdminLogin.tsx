@@ -1,20 +1,28 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Lock } from 'lucide-react';
 import { useApp } from '../utils/AppContext';
 
 export function AdminLogin() {
   const { login } = useApp();
-  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    
-    const success = login(username, password);
-    if (!success) {
-      setError('Invalid username or password');
+    setLoading(true);
+
+    const success = await login(email, password);
+    setLoading(false);
+
+    if (success) {
+      navigate('/admin/dashboard');
+    } else {
+      setError('Invalid email or password');
     }
   };
 
@@ -31,16 +39,16 @@ export function AdminLogin() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="username" className="block text-sm text-gray-700 mb-2">
-              Username
+            <label htmlFor="email" className="block text-sm text-gray-700 mb-2">
+              Email
             </label>
             <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-              placeholder="Enter username"
+              placeholder="Enter email"
               required
             />
           </div>
@@ -68,9 +76,10 @@ export function AdminLogin() {
 
           <button
             type="submit"
-            className="w-full bg-emerald-600 text-white py-3 rounded-lg hover:bg-emerald-700 transition-colors"
+            disabled={loading}
+            className="w-full bg-emerald-600 text-white py-3 rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Login
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 

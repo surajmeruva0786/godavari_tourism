@@ -35,9 +35,9 @@ export function BookingModal() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!selectedPackage) return;
 
     const booking: BookingFormData = {
@@ -48,20 +48,25 @@ export function BookingModal() {
       timestamp: new Date().toISOString()
     };
 
-    addBooking(booking);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      numberOfPeople: 1,
-      travelDate: '',
-      expectations: ''
-    });
-    
-    setIsOpen(false);
-    alert('Booking request submitted successfully! We will contact you soon.');
+    try {
+      await addBooking(booking);
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        numberOfPeople: 1,
+        travelDate: '',
+        expectations: ''
+      });
+
+      setIsOpen(false);
+      alert('Booking request submitted successfully! We will contact you soon.');
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      alert('Failed to submit booking. Please try again.');
+    }
   };
 
   if (!isOpen) return null;

@@ -1,9 +1,10 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { BookingFormData, PackageData, WebsiteSettings } from './types';
+import * as firebaseService from '../services/firebase.service';
 
 interface AppContextType {
   bookings: BookingFormData[];
-  addBooking: (booking: BookingFormData) => void;
+  addBooking: (booking: BookingFormData) => Promise<void>;
   packages: PackageData[];
   addPackage: (pkg: PackageData) => void;
   updatePackage: (id: string, pkg: PackageData) => void;
@@ -11,8 +12,9 @@ interface AppContextType {
   settings: WebsiteSettings;
   updateSettings: (settings: WebsiteSettings) => void;
   isAdmin: boolean;
-  login: (username: string, password: string) => boolean;
-  logout: () => void;
+  login: (email: string, password: string) => Promise<boolean>;
+  logout: () => Promise<void>;
+  loading: boolean;
 }
 
 const defaultSettings: WebsiteSettings = {
@@ -313,39 +315,49 @@ const initialPackages: PackageData[] = [
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [bookings, setBookings] = useState<BookingFormData[]>(() => {
-    const saved = localStorage.getItem('godavari-bookings');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [bookings, setBookings] = useState<BookingFormData[]>([]);
+  const [packages, setPackages] = useState<PackageData[]>(initialPackages);
+  const [settings, setSettings] = useState<WebsiteSettings>(defaultSettings);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const [packages, setPackages] = useState<PackageData[]>(() => {
-    const saved = localStorage.getItem('godavari-packages');
-    return saved ? JSON.parse(saved) : initialPackages;
-  });
-
-  const [settings, setSettings] = useState<WebsiteSettings>(() => {
-    const saved = localStorage.getItem('godavari-settings');
-    return saved ? JSON.parse(saved) : defaultSettings;
-  });
-
-  const [isAdmin, setIsAdmin] = useState(() => {
-    return localStorage.getItem('godavari-admin') === 'true';
-  });
-
+  // Initialize auth state listener
   useEffect(() => {
-    localStorage.setItem('godavari-bookings', JSON.stringify(bookings));
-  }, [bookings]);
+    const unsubscribe = firebaseService.onAuthStateChange((user) => {
+      setIsAdmin(!!user);
+      setLoading(false);
+    });
 
+    return () => unsubscribe();
+  }, []);
+
+  // Subscribe to bookings real-time updates
   useEffect(() => {
-    localStorage.setItem('godavari-packages', JSON.stringify(packages));
-  }, [packages]);
+    const unsubscribe = firebaseService.subscribeToBookings((updatedBookings) => {
+      setBookings(updatedBookings);
+    });
 
-  useEffect(() => {
-    localStorage.setItem('godavari-settings', JSON.stringify(settings));
-  }, [settings]);
+    return () => unsubscribe();
+  }, []);
 
-  const addBooking = (booking: BookingFormData) => {
-    setBookings(prev => [...prev, booking]);
+  const addBooking = async (booking: BookingFormData) => {
+    try {
+      const bookingData = {
+        name: booking.name,
+        email: booking.email,
+        phone: booking.phone,
+        numberOfPeople: booking.numberOfPeople,
+        travelDate: booking.travelDate,
+        expectations: booking.expectations,
+        packageType: booking.packageType,
+        packagePersons: booking.packagePersons,
+        timestamp: new Date().toISOString()
+      };
+      await firebaseService.addBooking(bookingData);
+    } catch (error) {
+      console.error('Error adding booking:', error);
+      throw error;
+    }
   };
 
   const addPackage = (pkg: PackageData) => {
@@ -360,22 +372,26 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setPackages(prev => prev.filter(p => p.id !== id));
   };
 
-  const updateSettings = (newSettings: WebsiteSettings) => {
+  const updateSettingsFunc = (newSettings: WebsiteSettings) => {
     setSettings(newSettings);
   };
 
-  const login = (username: string, password: string) => {
-    if (username === 'goadmin' && password === 'gopass') {
-      setIsAdmin(true);
-      localStorage.setItem('godavari-admin', 'true');
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      await firebaseService.loginAdmin(email, password);
       return true;
+    } catch (error) {
+      console.error('Login error:', error);
+      return false;
     }
-    return false;
   };
 
-  const logout = () => {
-    setIsAdmin(false);
-    localStorage.removeItem('godavari-admin');
+  const logout = async () => {
+    try {
+      await firebaseService.logoutAdmin();
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
   return (
@@ -388,10 +404,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
         updatePackage,
         deletePackage,
         settings,
-        updateSettings,
+        updateSettings: updateSettingsFunc,
         isAdmin,
         login,
-        logout
+        logout,
+        loading
       }}
     >
       {children}

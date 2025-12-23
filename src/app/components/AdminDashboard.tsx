@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LogOut, Users, Package, Settings, FileText } from 'lucide-react';
 import { useApp } from '../utils/AppContext';
 import { BookingsTab } from './admin/BookingsTab';
@@ -9,7 +10,13 @@ type Tab = 'bookings' | 'packages' | 'settings';
 
 export function AdminDashboard() {
   const { logout, bookings, packages } = useApp();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Tab>('bookings');
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -21,7 +28,7 @@ export function AdminDashboard() {
               Godavari Tourism - Admin Dashboard
             </h1>
             <button
-              onClick={logout}
+              onClick={handleLogout}
               className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-emerald-600 transition-colors"
             >
               <LogOut className="h-5 w-5" />
@@ -77,31 +84,28 @@ export function AdminDashboard() {
             <div className="flex gap-8 px-6">
               <button
                 onClick={() => setActiveTab('bookings')}
-                className={`py-4 border-b-2 transition-colors ${
-                  activeTab === 'bookings'
-                    ? 'border-emerald-600 text-emerald-600'
-                    : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
+                className={`py-4 border-b-2 transition-colors ${activeTab === 'bookings'
+                  ? 'border-emerald-600 text-emerald-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
+                  }`}
               >
                 Bookings
               </button>
               <button
                 onClick={() => setActiveTab('packages')}
-                className={`py-4 border-b-2 transition-colors ${
-                  activeTab === 'packages'
-                    ? 'border-emerald-600 text-emerald-600'
-                    : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
+                className={`py-4 border-b-2 transition-colors ${activeTab === 'packages'
+                  ? 'border-emerald-600 text-emerald-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
+                  }`}
               >
                 Packages
               </button>
               <button
                 onClick={() => setActiveTab('settings')}
-                className={`py-4 border-b-2 transition-colors ${
-                  activeTab === 'settings'
-                    ? 'border-emerald-600 text-emerald-600'
-                    : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
+                className={`py-4 border-b-2 transition-colors ${activeTab === 'settings'
+                  ? 'border-emerald-600 text-emerald-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
+                  }`}
               >
                 Settings
               </button>
